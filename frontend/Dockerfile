@@ -10,3 +10,9 @@ RUN npm run build
 
 # Copy frontend build to backend public folder
 COPY --from=frontend-build /frontend/dist ./public
+
+
+ENV NODE_ENV=production
+ENV PORT=5173
+
+EXPOSE 5173
