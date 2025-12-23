@@ -1,14 +1,11 @@
+FROM node:18-alpine
 
-# ---------- Build Frontend ----------
-FROM node:18-alpine AS frontend-build
+WORKDIR /app
 
-WORKDIR /frontend
-COPY frontend/package*.json ./
+COPY package*.json ./
 RUN npm install
-COPY frontend .
-RUN npm run build
 
-# Copy frontend build to backend public folder
-COPY --from=frontend-build /frontend/dist ./public
+COPY . .
 
 EXPOSE 5173
+CMD ["npm", "run", "dev"]
